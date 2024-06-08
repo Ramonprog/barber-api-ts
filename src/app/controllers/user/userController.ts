@@ -18,12 +18,25 @@ export class UserController {
       // Se a validação passar, prosseguir com a criação do usuário
       const user = await this.userService.create(parsedUser);
       return res.status(201).json(user);
-    } catch (error) {
+    } catch (error: any) {
       if (error instanceof z.ZodError) {
-        return res.status(400).json(new HttpException(400, 'Validation error'));
+         return res.status(400).json({
+          status: 400,
+          message: 'Validation error',
+          errors: error.errors, 
+        });
+      }
+    if(error instanceof HttpException) {
+        return res.status(error.status).json({
+          status: error.status,
+          message: error.message
+        });
       }
 
-      return res.status(500).json(new HttpException(500, 'Internal server error'));
+        return res.status(500).json({
+        status: 500,
+        message: error.message
+      });
     }
   }
 }

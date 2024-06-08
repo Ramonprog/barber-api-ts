@@ -8,7 +8,15 @@ export class UserService {
     this.userRepository = userRepository;
   }
 
-  async create(userDto: UserDto): Promise<UserDto> {
-    return this.userRepository.createUser(userDto);
+async create(userDto: UserDto): Promise<UserDto> {
+    try {
+      const userExists = await this.userRepository.findUserByEmail(userDto.email);
+      if (userExists) {
+        throw new Error("User already exists");
+      }
+      return this.userRepository.createUser(userDto);
+    } catch (error: any) { // Tipando 'error' como 'any' para acessar 'message'
+      throw new Error(error.message);
+    }
   }
 }

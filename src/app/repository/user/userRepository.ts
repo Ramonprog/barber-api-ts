@@ -17,4 +17,12 @@ export class UserRepository {
       }
     });
   }
+
+  async findUserByEmail(email: string) {
+    return this.prisma.user.findFirst({
+      where: {
+        email
+      }
+    });
+  }
 }
