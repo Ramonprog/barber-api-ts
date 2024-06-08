@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { UserDto } from "../../dto/userDto";
+import { UserAuthDto } from "../../dto/authDto";
 
 export class UserRepository {
   private prisma: PrismaClient;
@@ -22,7 +23,11 @@ export class UserRepository {
     return this.prisma.user.findFirst({
       where: {
         email
+      },include:{
+       subscriptions:true
       }
     });
   }
+
+ 
 }
