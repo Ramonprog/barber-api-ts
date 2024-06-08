@@ -1,5 +1,8 @@
 import express, { Application } from "express";
+import 'express-async-errors'
 import cors from "cors"
+import { ErrorMiddleware } from "../middlewares/error.middleware";
+import { router } from "../../routes";
 
 class Express{
   app: Application
@@ -10,8 +13,12 @@ class Express{
 
   private initMiddlewares(){
     this.app.use(express.json());
-    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors())
+
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(router)
+    //deve ser o ultimo middleware
+    this.app.use(ErrorMiddleware)
   }
 
   listen(port: number){
