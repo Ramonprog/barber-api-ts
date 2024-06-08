@@ -68,4 +68,16 @@ export class UserService {
       throw new Error(error.message);
     }
   }
+
+  async findUserById(id: string): Promise<UserDto | null> {
+    try {
+      const findUser = await this.userRepository.findUserById(id);
+      if(!findUser){
+        throw new Error("User not found")
+      }
+      return findUser
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
 }

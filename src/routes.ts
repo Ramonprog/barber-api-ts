@@ -12,6 +12,7 @@ const userController = new UserController(userService);
 
 // Rotas de usuário
 router.post('/user', userController.create.bind(userController));
-router.post('/login', userController.login.bind(userController));
+router.post('/session', userController.login.bind(userController));
+router.get('/user/:id', userController.userDetail.bind(userController));
 
 export { router };

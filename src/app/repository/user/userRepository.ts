@@ -23,11 +23,22 @@ export class UserRepository {
     return this.prisma.user.findFirst({
       where: {
         email
-      },include:{
-       subscriptions:true
+      }, include: {
+        subscriptions: true
+      }
+    });
+  }
+  async findUserById(id: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        id
+      },
+      include: {
+        subscriptions: true,
+        haircuts: true,
+        services: true
       }
     });
   }
 
- 
 }
