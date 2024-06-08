@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { UserService } from "../../services/user/userService";
 import { HttpException } from "../../../types/HttpException";
-import { UserDto, userSchema } from "../../dto/userDto";
+import {  userSchema } from "../../dto/userDto";
 import { z } from "zod";
-import { UserAuthDto, userAuthSchema } from "../../dto/authDto";
+import { UserAuthDto } from "../../dto/authDto";
 
 export class UserController {
   private userService: UserService;
@@ -67,8 +67,10 @@ export class UserController {
   }
 
   async userDetail(req: Request, res: Response): Promise<Response> {
+    const { user_id } = req
+    console.log("🚀 ~ UserController ~ userDetail ~ user_id:", user_id)
     try {
-      const user = await this.userService.findUserById(req.params.id);
+      const user = await this.userService.findUserById(user_id);
 
       const { password, ...userWithoutPassword } = user;
 

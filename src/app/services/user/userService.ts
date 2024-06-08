@@ -57,6 +57,7 @@ export class UserService {
         {
           subject: findUser.id,
           expiresIn: "30d",
+          
         }
       );
 

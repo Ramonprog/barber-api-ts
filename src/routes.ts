@@ -2,6 +2,7 @@ import { Router } from "express";
 import { UserController } from "./app/controllers/user/userController";
 import { UserService } from "./app/services/user/userService";
 import { UserRepository } from "./app/repository/user/userRepository";
+import { isAuthenticated } from "./infra/middlewares/isAuthenticated";
 
 const router = Router();
 
@@ -13,6 +14,7 @@ const userController = new UserController(userService);
 // Rotas de usuário
 router.post('/user', userController.create.bind(userController));
 router.post('/session', userController.login.bind(userController));
-router.get('/user/:id', userController.userDetail.bind(userController));
+router.use(isAuthenticated);
+router.get('/me', userController.userDetail.bind(userController));
 
 export { router };
