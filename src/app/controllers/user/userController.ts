@@ -17,7 +17,10 @@ export class UserController {
 
       // Se a validação passar, prosseguir com a criação do usuário
       const user = await this.userService.create(parsedUser);
-      return res.status(201).json(user);
+
+      const { password, ...userWithoutPassword } = user;
+
+      return res.status(201).json(userWithoutPassword);
     } catch (error: any) {
       if (error instanceof z.ZodError) {
          return res.status(400).json({
