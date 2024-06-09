@@ -21,23 +21,9 @@ export class HairCutController {
 
     } catch (error: any) {
       if (error instanceof z.ZodError) {
-        return res.status(400).json({
-          status: 400,
-          message: 'Validation error',
-          errors: error.errors,
-        });
+        throw new HttpException(400, 'Validation error', error.errors)
       }
-      if (error instanceof HttpException) {
-        return res.status(error.status).json({
-          status: error.status,
-          message: error.message
-        });
-      }
-
-      return res.status(500).json({
-        status: 500,
-        message: error.message
-      });
+      throw new HttpException(400, error.message)
     }
   }
 
