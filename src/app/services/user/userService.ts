@@ -1,4 +1,5 @@
 import { UserAuthDto, userAuthSchema } from "../../dto/authDto";
+import {  updateUserDto } from "../../dto/updateUserDto";
 import { UserDto } from "../../dto/userDto";
 import { UserRepository } from "../../repository/user/userRepository";
 import { compareSync, hashSync } from 'bcryptjs'
@@ -80,5 +81,20 @@ export class UserService {
     } catch (error: any) {
       throw new Error(error.message);
     }
+  }
+
+  async updateUser({address,email,name}: updateUserDto, user_id:string): Promise<updateUserDto> {
+    try {
+      const userAlreadyExists = await this.findUserById(user_id)
+      if(!userAlreadyExists){
+        throw new Error("User not found")
+      }
+
+      const userUpdated = await this.userRepository.updateUser({address,email,name}, user_id)
+      return userUpdated
+    } catch (error) {
+      throw new Error("Erro un update user");
+    }
+
   }
 }

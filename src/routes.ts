@@ -16,5 +16,6 @@ router.post('/user', userController.create.bind(userController));
 router.post('/session', userController.login.bind(userController));
 router.use(isAuthenticated);
 router.get('/me', userController.userDetail.bind(userController));
+router.put('/user', userController.userUpdate.bind(userController));
 
 export { router };

@@ -4,6 +4,7 @@ import { HttpException } from "../../../types/HttpException";
 import {  userSchema } from "../../dto/userDto";
 import { z } from "zod";
 import { UserAuthDto } from "../../dto/authDto";
+import { updateUserSchema } from "../../dto/updateUserDto";
 
 export class UserController {
   private userService: UserService;
@@ -75,6 +76,21 @@ export class UserController {
       const { password, ...userWithoutPassword } = user;
 
       return res.status(200).json(userWithoutPassword);
+    } catch (error: any) {
+      return res.status(500).json({
+        status: 500,
+        message: error.message
+      });
+    }
+  }
+
+  async userUpdate (req: Request, res: Response): Promise<Response> {
+    const parsedUser = updateUserSchema.parse(req.body);
+    const { user_id } = req;
+    try {
+      const user = await this.userService.updateUser(parsedUser,user_id);
+
+      return res.status(200).json(user);
     } catch (error: any) {
       return res.status(500).json({
         status: 500,
