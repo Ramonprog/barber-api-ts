@@ -24,4 +24,20 @@ export class ScheduleRepository {
     }
 
   }
+
+  async scheduleList(user_id: string): Promise<scheduleDto[]> {
+    try {
+      return await this.prisma.service.findMany({
+        where: { user_id },
+        select: {
+          customer: true,
+          haircut_id: true,
+          id: true
+        }
+      })
+
+    } catch (error) {
+      throw new HttpException(400, error.message)
+    }
+  }
 }

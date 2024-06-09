@@ -19,4 +19,14 @@ export class ScheduleController {
       throw new HttpException(400, error.message)
     }
   }
+
+  async allSchedule(req: Request, res: Response): Promise<Response> {
+    const { user_id } = req
+    try {
+      const schedules = await this.scheduleService.allSchedule(user_id)
+      return res.status(200).json(schedules)
+    } catch (error) {
+      throw new HttpException(400, error.message)
+    }
+  }
 }

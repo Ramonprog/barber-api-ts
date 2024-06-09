@@ -39,7 +39,8 @@ router.put('/haircut', hairCutController.updateHairCut.bind(hairCutController));
 router.get('/haircut/detail', hairCutController.hairCutDetail.bind(hairCutController));
 
 // rotas de agendamento
-router.post('/schedule', scheduleController.createSchedule.bind(scheduleController))
+router.get('/schedule', scheduleController.createSchedule.bind(scheduleController))
+router.post('/schedule', scheduleController.allSchedule.bind(scheduleController))
 
 export { router };
 
