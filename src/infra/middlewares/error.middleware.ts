@@ -23,8 +23,6 @@ export function ErrorMiddleware(err: HttpException | ZodError | Error, req: Requ
     });
   }
 
-  console.error(err); // Log the error for debugging purposes
-
   return res.status(500).json({
     status: 500,
     message: 'Internal Server Error',

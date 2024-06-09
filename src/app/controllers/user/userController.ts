@@ -69,7 +69,6 @@ export class UserController {
 
   async userDetail(req: Request, res: Response): Promise<Response> {
     const { user_id } = req
-    console.log("🚀 ~ UserController ~ userDetail ~ user_id:", user_id)
     try {
       const user = await this.userService.findUserById(user_id);
 

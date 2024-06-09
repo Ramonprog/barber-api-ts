@@ -25,4 +25,15 @@ export class ScheduleService {
       throw new HttpException(400, error.message)
     }
   }
+
+  async finishSchedule(schedule_id: string): Promise<scheduleDto> { 
+    if(!schedule_id) {
+      throw new HttpException(400, 'Schedule not found')
+    }
+    try {
+      return await this.scheduleRepository.finishSchedule(schedule_id)
+    } catch (error) {
+      throw new HttpException(400, error.message)
+    }
+  }
 }

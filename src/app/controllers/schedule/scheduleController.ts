@@ -29,4 +29,14 @@ export class ScheduleController {
       throw new HttpException(400, error.message)
     }
   }
+
+  async finishSchedule(req: Request, res: Response): Promise<Response> {
+    const { schedule_id } = req.query as {schedule_id: string}
+    try {
+      const schedule = await this.scheduleService.finishSchedule(schedule_id)
+      return res.status(200).json(schedule)
+    } catch (error) {
+      throw new HttpException(400, error.message)
+    }
+  }
 }

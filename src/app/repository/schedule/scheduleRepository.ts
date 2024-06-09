@@ -32,10 +32,24 @@ export class ScheduleRepository {
         select: {
           customer: true,
           haircut_id: true,
-          id: true
+          id: true,
+          done: true
         }
       })
 
+    } catch (error) {
+      throw new HttpException(400, error.message)
+    }
+  }
+
+  async finishSchedule(schedule_id: string): Promise<scheduleDto> {
+    try {
+      return await this.prisma.service.update({
+        where: { id: schedule_id },
+        data: {
+          done: true
+        }
+      })
     } catch (error) {
       throw new HttpException(400, error.message)
     }
