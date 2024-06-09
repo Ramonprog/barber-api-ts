@@ -9,9 +9,9 @@ export class HairCutService {
   }
 
   async createHairCut(CreateHairCutDto:CreateHairCutDto, user_id: string): Promise<CreateHairCutDto> {
-    const parseHairCut = createHairCutSchema.parse(CreateHairCutDto);
+ 
     try {
-      const newHairCut = await this.hairCutRepository.createHairCut(parseHairCut, user_id);
+      const newHairCut = await this.hairCutRepository.createHairCut(CreateHairCutDto, user_id);
       return newHairCut;
     } catch (error) {
       throw new Error(error.message);

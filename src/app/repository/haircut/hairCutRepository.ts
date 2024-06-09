@@ -8,6 +8,7 @@ export class HairCutRepository {
   }
 
  async createHairCut({name,price}: CreateHairCutDto, user_id:string): Promise<CreateHairCutDto> {
+  if(!user_id || user_id as string === '') throw new Error('User not found')
     try {
       const newHairCut = await this.prisma.haircut.create({
         data: {
