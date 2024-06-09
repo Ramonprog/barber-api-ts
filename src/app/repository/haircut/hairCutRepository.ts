@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { CreateHairCutDto } from "../../dto/createHairCut";
+import { HiarcutRequest } from "../../dto/haircutRequest";
+import { HairCutList } from "../../dto/haisCutList";
 export class HairCutRepository {
   private prisma: PrismaClient;
 
@@ -35,5 +37,20 @@ export class HairCutRepository {
       throw new Error(error.message);
     }
   }
+
+  async allHaircuts(hairCutRequest: HiarcutRequest): Promise<HairCutList[]> {
+    try {
+      const haircuts = await this.prisma.haircut.findMany(
+        {
+          where: {
+            user_id: hairCutRequest.user_id,
+            status: hairCutRequest.status
+          }
+        }
+      );
+      return haircuts;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
-  
