@@ -1,7 +1,7 @@
 // src/middleware/ErrorMiddleware.ts
 import { NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
-import { HttpException } from '../../types/HttpException';
+import { HttpException } from '../../@types/HttpException';
 
 export function ErrorMiddleware(err: HttpException | ZodError | Error, req: Request, res: Response, next: NextFunction) {
   if (res.headersSent) {

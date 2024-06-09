@@ -6,6 +6,9 @@ import { isAuthenticated } from "./infra/middlewares/isAuthenticated";
 import { HairCutRepository } from "./app/repository/haircut/hairCutRepository";
 import { HairCutService } from "./app/services/haircut/hairCutService";
 import { HairCutController } from "./app/controllers/haircut/hairCutController";
+import { ScheduleRepository } from "./app/repository/schedule/scheduleRepository";
+import { ScheduleService } from "./app/services/schedule/scheduleService";
+import { ScheduleController } from "./app/controllers/schedule/scheduleController";
 
 const router = Router();
 
@@ -17,6 +20,10 @@ const userController = new UserController(userService);
 const hairCutRepository = new HairCutRepository();
 const hairCutService = new HairCutService(hairCutRepository);
 const hairCutController = new HairCutController(hairCutService);
+
+// Instanciando os serviços e o controlador de agendamento
+const scheduleController = new ScheduleController()
+
 
 // Rotas de usuário
 router.post('/user', userController.create.bind(userController));
@@ -31,4 +38,9 @@ router.get('/haircut', hairCutController.allHaircuts.bind(hairCutController));
 router.put('/haircut', hairCutController.updateHairCut.bind(hairCutController));
 router.get('/haircut/detail', hairCutController.hairCutDetail.bind(hairCutController));
 
+// rotas de agendamento
+router.post('/schedule', scheduleController.createSchedule.bind(scheduleController))
+
 export { router };
+
+//.bind serve para passar o contexto da classe para a função

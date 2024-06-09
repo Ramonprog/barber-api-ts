@@ -3,7 +3,7 @@ import { CreateHairCutDto } from "../../dto/haircut/createHairCut";
 import { HiarcutRequest } from "../../dto/haircut/haircutRequest";
 import { HairCutList } from "../../dto/haircut/haisCutList";
 import { HairCutUpdateDto } from "../../dto/haircut/hairCutUpdateDto";
-import { HttpException } from "../../../types/HttpException";
+import { HttpException } from "../../../@types/HttpException";
 export class HairCutRepository {
   private prisma: PrismaClient;
 

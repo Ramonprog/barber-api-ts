@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserService } from "../../services/user/userService";
-import { HttpException } from "../../../types/HttpException";
+import { HttpException } from "../../../@types/HttpException";
 import {  userSchema } from "../../dto/user/userDto";
 import { z } from "zod";
 import { UserAuthDto } from "../../dto/user/authDto";

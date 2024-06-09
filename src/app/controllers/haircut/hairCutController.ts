@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { HairCutService } from "../../services/haircut/hairCutService";
 import { createHairCutSchema } from "../../dto/haircut/createHairCut";
 import { z } from "zod";
-import { HttpException } from "../../../types/HttpException";
+import { HttpException } from "../../../@types/HttpException";
 import { haircutSRequestSchema } from "../../dto/haircut/haircutRequest";
 import { hairCutUpdateSchema } from "../../dto/haircut/hairCutUpdateDto";
 

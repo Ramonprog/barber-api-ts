@@ -1,4 +1,4 @@
-import { HttpException } from "../../../types/HttpException";
+import { HttpException } from "../../../@types/HttpException";
 import { CreateHairCutDto } from "../../dto/haircut/createHairCut";
 
 import { HairCutUpdateDto } from "../../dto/haircut/hairCutUpdateDto";
