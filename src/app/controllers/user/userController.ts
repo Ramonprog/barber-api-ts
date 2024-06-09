@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { UserService } from "../../services/user/userService";
 import { HttpException } from "../../../types/HttpException";
-import {  userSchema } from "../../dto/userDto";
+import {  userSchema } from "../../dto/user/userDto";
 import { z } from "zod";
-import { UserAuthDto } from "../../dto/authDto";
-import { updateUserSchema } from "../../dto/updateUserDto";
+import { UserAuthDto } from "../../dto/user/authDto";
+import { updateUserSchema } from "../../dto/user/updateUserDto";
 
 export class UserController {
   private userService: UserService;

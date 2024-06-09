@@ -1,6 +1,6 @@
-import { UserAuthDto, userAuthSchema } from "../../dto/authDto";
-import {  updateUserDto } from "../../dto/updateUserDto";
-import { UserDto } from "../../dto/userDto";
+import { UserAuthDto, userAuthSchema } from "../../dto/user/authDto";
+import {  updateUserDto } from "../../dto/user/updateUserDto";
+import { UserDto } from "../../dto/user/userDto";
 import { UserRepository } from "../../repository/user/userRepository";
 import { compareSync, hashSync } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'

@@ -28,5 +28,7 @@ router.put('/user', userController.userUpdate.bind(userController));
 //rotas de corte de cabelo
 router.post('/haircut', hairCutController.createHairCut.bind(hairCutController));
 router.get('/haircut', hairCutController.allHaircuts.bind(hairCutController));
+router.put('/haircut', hairCutController.updateHairCut.bind(hairCutController));
+router.get('/haircut/detail', hairCutController.hairCutDetail.bind(hairCutController));
 
 export { router };

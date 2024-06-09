@@ -1,7 +1,10 @@
 import { HttpException } from "../../../types/HttpException";
-import { CreateHairCutDto, createHairCutSchema } from "../../dto/createHairCut";
-import { HiarcutRequest } from "../../dto/haircutRequest";
-import { HairCutList } from "../../dto/haisCutList";
+import { CreateHairCutDto } from "../../dto/haircut/createHairCut";
+
+import { HairCutUpdateDto } from "../../dto/haircut/hairCutUpdateDto";
+import { HiarcutRequest } from "../../dto/haircut/haircutRequest";
+import { HairCutList } from "../../dto/haircut/haisCutList";
+
 import { HairCutRepository } from "../../repository/haircut/hairCutRepository";
 import { UserRepository } from "../../repository/user/userRepository";
 
@@ -37,7 +40,29 @@ export class HairCutService {
       const haircuts = await this.hairCutRepository.allHaircuts(hairCutRequest);
       return haircuts;
     } catch (error) {
-      throw new Error(error.message);
+   throw new HttpException(400, error.message)
+    }
+  }
+
+  async updateHairCut(hairCutDto: HairCutUpdateDto): Promise<HairCutUpdateDto> {
+    try {
+      return await this.hairCutRepository.updateHairCut(hairCutDto);
+    } catch (error) {
+      throw new HttpException(400, error.message)
+    }
+  }
+
+  async hairCutDetail(haircut_id: string) {
+
+    try {
+    if(!haircut_id) {
+      throw new HttpException(400, 'Haircut not found')
+    }
+    
+      return await this.hairCutRepository.hairCutDetail(haircut_id);
+
+    } catch (error) {
+      throw new HttpException(400, error.message)
     }
   }
 }

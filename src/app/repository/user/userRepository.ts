@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { UserDto } from "../../dto/userDto";
-import { UserAuthDto } from "../../dto/authDto";
-import {  updateUserDto } from "../../dto/updateUserDto";
+import { UserDto } from "../../dto/user/userDto";
+import { UserAuthDto } from "../../dto/user/authDto";
+import {  updateUserDto } from "../../dto/user/updateUserDto";
 
 export class UserRepository {
   private prisma: PrismaClient;
@@ -36,8 +36,6 @@ export class UserRepository {
       },
       include: {
         subscriptions: true,
-        haircuts: true,
-        services: true
       }
     });
   }
